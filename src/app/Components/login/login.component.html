@@ -1,0 +1,41 @@
+<section>
+    <form [formGroup]="loginForm" (ngSubmit)="handleForm()">
+      <p *ngIf="errMsg" class="alert alert-danger p-1 w-50 mx-auto mb-0 text-center">
+        {{errMsg}}
+        </p>
+        <div class="singup-form d-flex flex-column align-items-center justify-content-center my-5 p-4 shadow rounded-4 w-50 mx-auto " style="background-color:rgb(122, 178, 178)">
+            <h1 class="text-white">Login</h1>
+           
+              <div class="mb-1 w-50">
+                <label for="user-email" class="form-label"></label>
+                <input formControlName="email" type="email" class="form-control" id="signup-email" placeholder="Enter Your Email">
+                <div *ngIf="loginForm.get('email')?.errors&&loginForm.get('email')?.touched" class="text-danger">
+                  <span *ngIf="loginForm.get('email')?.getError('required')">Email is requied</span>
+                  <span *ngIf="loginForm.get('email')?.getError('email')">Invalid Formate</span>
+                </div>
+              </div>
+             
+              <div class="mb-1 w-50">
+                <label for="user-password" class="form-label"></label>
+                <input formControlName="password" type="password" class="form-control" id="signup-password" placeholder="Enter Password">
+                <div *ngIf="loginForm.get('password')?.errors&&loginForm.get('password')?.touched" class="text-danger">
+                  <span *ngIf="loginForm.get('password')?.getError('required')">confirm password is requied</span>
+                  <span *ngIf="loginForm.get('password')?.getError('pattern')">Mismatch Formate with password</span>
+                </div>
+              </div>
+             
+              <span id="message" class="py-1"></span>
+              <button [disabled]="loginForm.invalid" class="btn my-3 text-white border-none" style="background-color: teal;">Login
+              <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
+              
+              </button>
+              <p class="text-white">Have an account?<a routerLink="/register" class="text-decoration-none" style="color: teal;"> SignUp</a></p>
+             </div>
+    
+    
+    </form>
+    <!-- <p *ngIf="errMsg" class="alert alert-danger p-1 w-50 mx-auto mb-0">
+    {{errMsg}}
+    </p> -->
+    </section>
+    
